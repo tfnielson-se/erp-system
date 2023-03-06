@@ -20,8 +20,57 @@ puts  "🔩 items seeded"
 
 puts "seeding projects... 🗒️"
 
+name = ["BOM1","BOM2", "BOM3", "BOM4", "BOM5", "BOM6","BOM7", "BOM8", "BOM9", "BOM10"]
+
+desc1 = Faker::Construction.subcontract_category
+desc2 =Faker::Construction.subcontract_category
+desc3 =Faker::Construction.subcontract_category
+desc4 =Faker::Construction.subcontract_category
+desc5 =Faker::Construction.subcontract_category
+desc6 =Faker::Construction.subcontract_category
+desc7 =Faker::Construction.subcontract_category
+desc8 =Faker::Construction.subcontract_category
+desc9 =Faker::Construction.subcontract_category
+desc10 =Faker::Construction.subcontract_category
+
 10.times do
-  Project.create(name: Faker::App.name , description: Faker::Lorem.paragraphs, is_active: true, budget: rand(100_000_00..100_0000_00))
+  Bom.create(name: name.sample, description: desc1, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name.sample, description: desc2, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name.sample, description: desc10, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name.sample, description: desc3, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name.sample, description: desc4, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name.sample, description: desc5, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name.sample, description: desc6, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name.sample, description: desc7, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name.sample, description: desc8, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name.sample, description: desc9, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
 end
 
 puts "🗒️ projects seeded"
