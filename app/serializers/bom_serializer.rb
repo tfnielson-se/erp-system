@@ -1,5 +1,7 @@
 class BomSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :item_qty
-  has_one :project
-  has_one :item
+  attributes :id, :name, :description, :project
+
+  def project
+    object.project.name
+  end
 end

@@ -3,30 +3,25 @@ class BomsController < ApplicationController
 
   # GET /boms
   def index
-    @boms = Bom.all
+    @boms = Bom.all.order(:name)
 
     render json: @boms
   end
 
-  # GET /boms/1
+  # GET /boms/bom1
   def show
     render json: @bom
   end
 
   # POST /boms
   def create
-    @bom = Bom.new(bom_params)
-
-    if @bom.save
-      render json: @bom, status: :created, location: @bom
-    else
-      render json: @bom.errors, status: :unprocessable_entity
-    end
+    @bom = Bom.create!(bom_params)
+    render json: @bom, status: :created, location: @bom
   end
 
   # PATCH/PUT /boms/1
   def update
-    if @bom.update(bom_params)
+    if @bom.update!(bom_params)
       render json: @bom
     else
       render json: @bom.errors, status: :unprocessable_entity
@@ -41,7 +36,8 @@ class BomsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bom
-      @bom = Bom.find(params[:id])
+      @bom = Bom.all.select{|bom| bom.name === params[:id]}
+      # byebug
     end
 
     # Only allow a list of trusted parameters through.

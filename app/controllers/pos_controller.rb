@@ -3,8 +3,7 @@ class PosController < ApplicationController
 
   # GET /pos
   def index
-    @pos = Po.all
-
+    @pos = Po.all.order(:po_number).group_by{|po| po.po_number}
     render json: @pos
   end
 
@@ -41,11 +40,12 @@ class PosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_po
-      @po = Po.find(params[:id])
+      @po = Po.all.where(po_number: params[:id])
+      # byebug
     end
 
     # Only allow a list of trusted parameters through.
     def po_params
-      params.permit(:date, :user_id, :item_id, :item_qty, :po_total_cost)
+      params.permit(:date, :po_number, :user_id, :item_id, :item_qty, :po_total_cost)
     end
 end
