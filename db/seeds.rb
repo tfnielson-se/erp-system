@@ -27,14 +27,14 @@ end
 puts "🗒️ projects seeded"
 
 puts "seeding users... 👤"
-u1 = User.create(first_name: "Galen", last_name: "Gastby", email: "galen@erpsystem.com", password_digest: "Galen123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
-u2 = User.create(first_name: "Tom", last_name: "Angotee", email: "tom@erpsystem.com", password_digest: "Tom123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
-u3 = User.create(first_name: "Sam", last_name: "Aguas", email: "sam@erpsystem.com", password_digest: "Sam123!?", title: "Master Wizard of Wizardry", is_active: true, is_admin: true)
-u4 = User.create(first_name: "Thomas", last_name: "O'Nielson", email: "thomas@erpsystem.com", password_digest: "Thomas123!?", title: Faker::Construction.role, is_active: true, is_admin: true)
-u5 = User.create(first_name: "Nick", last_name: "Stokefield", email: "nick@erpsystem.com", password_digest: "Nick123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
-u6 = User.create(first_name: "Owen", last_name: "Wheelson", email: "owen@erpsystem.com", password_digest: "Owen123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
-u7 = User.create(first_name: "Stephen B", last_name: "Smith", email: "stephen@erpsystem.com", password_digest: "Stephen123!?", title: "Master Wizard of Wizardry", is_active: true, is_admin: true)
-u8 = User.create(first_name: "Josias", last_name: "Youngfellow", email: "josias@erpsystem.com", password_digest: "Josias123!?", title: Faker::Construction.role, is_active: true, is_admin: true)
+u1 = User.create(first_name: "Galen", last_name: "Gastby", email: "galen@erpsystem.com", password: "Galen123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
+u2 = User.create(first_name: "Tom", last_name: "Angotee", email: "tom@erpsystem.com", password: "Tom123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
+u3 = User.create(first_name: "Sam", last_name: "Aguas", email: "sam@erpsystem.com", password: "Sam123!?", title: "Master Wizard of Wizardry", is_active: true, is_admin: true)
+u4 = User.create(first_name: "Thomas", last_name: "O'Nielson", email: "thomas@erpsystem.com", password: "Thomas123!?", title: Faker::Construction.role, is_active: true, is_admin: true)
+u5 = User.create(first_name: "Nick", last_name: "Stokefield", email: "nick@erpsystem.com", password: "Nick123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
+u6 = User.create(first_name: "Owen", last_name: "Wheelson", email: "owen@erpsystem.com", password: "Owen123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
+u7 = User.create(first_name: "Stephen B", last_name: "Smith", email: "stephen@erpsystem.com", password: "Stephen123!?", title: "Master Wizard of Wizardry", is_active: true, is_admin: true)
+u8 = User.create(first_name: "Josias", last_name: "Youngfellow", email: "josias@erpsystem.com", password: "Josias123!?", title: Faker::Construction.role, is_active: true, is_admin: true)
 
 
 

@@ -10,6 +10,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  get '/sessions', to: "sessions#index"
+  # CUSTOME ROUTES
+  # get '/sessions', to: "sessions#index"
+  post "/login", to: "sessions#create"
+  # get "/me", to: "users#show"
+  delete "/logout", to: "sessions#destroy"
+  get "/authorized", to: "users#show"
+
 
 end

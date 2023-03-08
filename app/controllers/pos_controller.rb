@@ -3,7 +3,7 @@ class PosController < ApplicationController
 
   # GET /pos
   def index
-    @pos = Po.all.order(:po_number).group_by{|po| po.po_number}
+    @pos = Po.all.order(:po_number)
     render json: @pos
   end
 
