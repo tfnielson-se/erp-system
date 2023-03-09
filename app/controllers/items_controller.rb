@@ -15,13 +15,8 @@ class ItemsController < ApplicationController
 
   # POST /items
   def create
-    @item = Item.new(item_params)
-
-    if @item.save
-      render json: @item, status: :created, location: @item
-    else
-      render json: @item.errors, status: :unprocessable_entity
-    end
+    @item = Item.create!(item_params)
+    render json: @item, status: :created
   end
 
   # PATCH/PUT /items/1

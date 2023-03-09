@@ -27,7 +27,7 @@ const ProjectRow = ({ project, onDeleteProject }) => {
 			<td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
 				<div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
 					<h2 className="text-sm font-normal capitalize">
-						{is_active ? "Ongoing" : "Completed"}
+						{is_active ? "Active" : "Completed"}
 					</h2>
 				</div>
 			</td>
@@ -38,7 +38,7 @@ const ProjectRow = ({ project, onDeleteProject }) => {
 			</td>
 			<td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
 				<div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
-					<h2 className="text-sm font-normal capitalize">{budget}</h2>
+					<h2 className="text-sm font-normal capitalize ">{budget}</h2>
 				</div>
 			</td>
 			<td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
@@ -47,7 +47,7 @@ const ProjectRow = ({ project, onDeleteProject }) => {
 						View
 					</button>
 				</Link>
-					<button onClick={handleDeleteProject} className="inline-flex items-center px-3 py-1 mx-1 rounded-md gap-x-2 text-gray-300 bg-emerald-100/60 dark:bg-gray-800 text-sm font-normal capitalize">
+					<button onClick={handleDeleteProject} className="inline-flex items-center px-3 py-1 mx-1 rounded-md gap-x-2 text-gray-300 bg-emerald-100/60 dark:bg-red-800 text-sm font-normal capitalize">
 						Delete
 					</button>
 			</td>

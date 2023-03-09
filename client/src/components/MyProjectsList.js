@@ -2,33 +2,30 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import ProjectRow from "./ProjectRow"
 
-const ProjectsList = ({  }) => {
-  const[allProjects, setAllProjects] = useState([])
+const MyProjectsList = ({ currentUser }) => {
+  const {projects} = currentUser
+  const[myProjects, setMyProjects] = useState(projects)
 
-  useEffect(() => {
-    fetch('/projects')
-    .then(res => res.json())
-    .then(projectsData => setAllProjects(projectsData))
-  },[])
-
-  if(!allProjects) return <h1>Loading...</h1>;
+  if(!myProjects) return <h1>Loading...</h1>;
 
   const deleteProject = (projectId) => {
-    const projectsAfterDelete = allProjects.filter(project => {
+    const projectsAfterDelete = projects.filter(project => {
       if (project.id !== projectId) {
         return project
     }})
-    setAllProjects(projectsAfterDelete)
+    setMyProjects(projectsAfterDelete)
   }
 
-  const renderProjects = allProjects.map((project) => (
+  const renderProjects = myProjects.map((project) => (
     <ProjectRow key={project.id} project={project} onDeleteProject={deleteProject}/>
   ))
 
 
   return (
     <>
-
+    <Link to='/projects' className="inline-flex items-center px-3 py-1 mx-1 rounded-md gap-x-2 text-gray-300 bg-emerald-100/60 dark:bg-gray-800 text-sm font-normal capitalize">
+      <button className="inline-flex items-center px-3 py-1 mx-1 rounded-md gap-x-2 text-gray-300 bg-emerald-100/60 dark:bg-gray-800 text-sm font-normal capitalize">View All Projects</button>
+    </Link>
 <section className="container px-4 mx-auto mt-5">
 			<div className="flex flex-col">
 				<div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -95,4 +92,4 @@ const ProjectsList = ({  }) => {
   )
 }
 
-export default ProjectsList
+export default MyProjectsList

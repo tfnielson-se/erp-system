@@ -25,8 +25,8 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.create!(user_params)
-    render json: @user, status: :created
+    user = User.create!(user_params)
+    render json: user, status: :created
   end
 
   # PATCH/PUT /users/1

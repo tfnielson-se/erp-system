@@ -2,17 +2,17 @@
 ////////////////////////////////////////////////////////////////
 //  TODO
 // 1. Projects CRUD
-// // Create -
+// // Create - ✅
 // // Read - ✅
 // // Update -
 // // Delete - ✅
 // 2. User CRUD
-// // Create - ✅ needs render errors
-// // Read - me? ✅
+// // Create - ✅
+// // Read - ✅
 // // Update -
 // // Delete -
 // 3. BOMs page
-// // Create - ✅ needs render errors
+// // Create - ✅
 // // Read - ✅
 // // Update - ✅ - needs more work after create
 // // Delete - ✅
@@ -21,8 +21,8 @@
 // // Read
 // // Update
 // // Delete
-// 5. Items page -- revise
-// // Create
+// 5. Items page
+// // Create - ✅
 // // Read - ✅
 // // Update
 // // Delete - ✅
@@ -38,7 +38,8 @@ import Login from "./components/Login";
 import UserProfile from "./components/UserProfile";
 import FormUsers from "./components/FormUsers";
 
-import ProjectList from "./components/ProjectsList";
+import MyProjectsList from "./components/MyProjectsList";
+import ProjectsList from "./components/ProjectsList";
 import ProjectDetails from "./components/ProjectDetails";
 import FormNewProject from "./components/FormNewProject";
 
@@ -51,9 +52,9 @@ import PoList from "./components/PoList";
 import "./App.css";
 
 function App() {
-  const [users, setUsers] = useState([]);
+	const [users, setUsers] = useState([]);
 	const [currentUser, setCurrentUser] = useState(false);
-  const [errors, setErrors] = useState(false);
+	const [errors, setErrors] = useState(false);
 
 	// console.log("current", currentUser);
 	// console.log("users", users)
@@ -75,18 +76,23 @@ function App() {
 			}
 		});
 	};
-  // console.log(users)
-  const updateCurrentUser = (user) => {setCurrentUser(user); fetchUsers();};
+	// console.log(users)
+	const updateCurrentUser = (user) => {
+		setCurrentUser(user);
+		fetchUsers();
+	};
 
 	const onAddNewUser = (newUser) => {
 		setUsers([...users, newUser]);
 	};
-  
 
-  if(errors) return <h1>{errors}</h1>
+	if (errors) return <h1>{errors}</h1>;
 	return (
 		<div>
-			<NavBar currentUser={currentUser} updateCurrentUser={updateCurrentUser}/>
+			<NavBar
+				currentUser={currentUser}
+				updateCurrentUser={updateCurrentUser}
+			/>
 			<Routes>
 				<Route
 					path="/"
@@ -105,14 +111,21 @@ function App() {
 					path="/users/:id"
 					element={<UserProfile currentUser={currentUser} />}
 				/>
-        <Route path='/users/:id/projects' element={<ProjectList currentUser={currentUser} />} />
-        <Route path='/projects/:id' element={<ProjectDetails />} />
-        <Route path='/projects/new' element={<FormNewProject />} />
-        <Route path='/boms' element={<BomsList />} />
-        <Route path='/boms/:name' element={<BomsDetails /> } />
-        <Route path='/pos' element={<PoList />} />
-        <Route path='/Items' element={<ItemsList />} />
-        <Route path='/login' element={<Login updateCurrentUser={updateCurrentUser}/>} />
+				<Route
+					path="/users/:id/projects"
+					element={<MyProjectsList currentUser={currentUser} />}
+				/>
+				<Route path="/projects" element={<ProjectsList />} />
+				<Route path="/projects/:id" element={<ProjectDetails />} />
+				<Route path="/projects/new" element={<FormNewProject />} />
+				<Route path="/boms" element={<BomsList />} />
+				<Route path="/boms/:name" element={<BomsDetails />} />
+				<Route path="/pos" element={<PoList />} />
+				<Route path="/Items" element={<ItemsList />} />
+				<Route
+					path="/login"
+					element={<Login updateCurrentUser={updateCurrentUser} />}
+				/>
 			</Routes>
 		</div>
 	);

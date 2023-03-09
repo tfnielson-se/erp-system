@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import ItemsRow from "./ItemsRow"
+import FormNewItem from "./FormNewItem"
 
 const ItemsList = () => {
   const [items, setItems] = useState(null)
@@ -20,6 +21,9 @@ const ItemsList = () => {
     }})
     setItems(itemsAfterDelete)
   }
+
+  const addNewItem = (newItem) => (
+    setItems([...items, newItem])  )
 
   const renderItems = items.map((item) => (
     <ItemsRow key={item.id} item={item} onDeleteItem={deleteItem} />
@@ -80,6 +84,7 @@ const ItemsList = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                <FormNewItem onAddNewItem={addNewItem}/>
                 {renderItems}
               </tbody>
             </table>

@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  include ActionView::Helpers::NumberHelper
   before_action :set_project, only: %i[ show update destroy ]
 
   # GET /projects

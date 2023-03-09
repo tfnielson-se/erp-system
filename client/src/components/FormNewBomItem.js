@@ -10,7 +10,7 @@ const FormNewBomItem = ({}) => {
 	};
   
 	const [formData, setFormData] = useState(initialValue);
-  const [formErrors, setFormErrors] = useState("");
+  const [errors, setErrors] = useState("");
 
 	const { item, item_qty } = formData;
   const navigate = useNavigate()
@@ -26,14 +26,15 @@ const FormNewBomItem = ({}) => {
 			if (res.ok) {
 				res.json().then((newItem) => {
 					console.log(newItem);
-					setFormErrors("");
+					setErrors("");
 				});
 			} else {
-				setFormErrors("");
+				res.json().then((errorMsg) =>
+					console.log((errorMsg.error)))
 			}
 		});
 	};
-  if(formErrors) return <h1>{formErrors}</h1>
+  const renderErrors = errors ?  <h1 className="mt-2 text-red-500">{errors}</h1> : null
 	return (
 		<tr className="bg-gray-800">
 			<td className="px-4 text-sm text-gray-700 dark:text-gray-200 whitespace-nowrap">
@@ -61,6 +62,7 @@ const FormNewBomItem = ({}) => {
 				>
 					Submit
 				</button>
+        {renderErrors}
 			</td>
 		</tr>
 	);

@@ -1,5 +1,5 @@
-import { ErrorResponse } from "@remix-run/router";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FormUsers = ({ onAddNewUser }) => {
 	let initialValues = {
@@ -7,28 +7,31 @@ const FormUsers = ({ onAddNewUser }) => {
 		last_name: "",
 		email: "",
 		password: "",
-		passwordConfirmation: "",
+    passwordConfirmation: "",
 		title: "",
 		is_active: true,
 		is_admin: false,
 	};
 	const [formData, setFormData] = useState(initialValues);
-	const [formErrors, setFormErrors] = useState("");
+	const [errors, setErrors] = useState("");
+  const [createdMsg, setCreatedMsg] = useState("")
 	const {
 		first_name,
 		last_name,
 		email,
 		password,
-		passwordConfirmation,
+    passwordConfirmation,
 		title,
-		is_active,
+		is_active = true,
 		is_admin,
 	} = formData;
 
+  const navigate = useNavigate()
 	// NEED TO FIX DISPLAY OF ERRORS
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(formData);
+    if(password !== passwordConfirmation) return setErrors("Password Not Matching")
 		fetch("/users", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
@@ -37,13 +40,18 @@ const FormUsers = ({ onAddNewUser }) => {
 			if (res.ok) {
 				res.json().then((newUser) => {
 					console.log(newUser);
-					setFormErrors("");
+          setFormData(initialValues);
+					setCreatedMsg(`New User: ${newUser.first_name} Created!`);
+          setErrors("")
 				});
-			} else {
-				setFormErrors("");
-			}
-		});
-	};
+			} else {res.json().then((errorMsg) =>
+        setErrors((errorMsg.errors)))
+    }
+  });
+  };
+  
+  const renderErrors = errors ?  <h1 className="mt-2 text-red-500">{errors}, All Fields Requiered</h1> : null
+  const renderSuccess = createdMsg ?  <h1 className="mt-2 text-green-500">{createdMsg}</h1> : null
 
 	return (
 		<section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
@@ -66,7 +74,7 @@ const FormUsers = ({ onAddNewUser }) => {
 							value={title}
 							onChange={(e) => {
 								setFormData({
-									...title,
+									...formData,
 									title: e.target.value,
 								});
 							}}
@@ -191,6 +199,8 @@ const FormUsers = ({ onAddNewUser }) => {
 						Submit
 					</button>
 				</div>
+        {renderErrors}
+        {renderSuccess}
 			</form>
 		</section>
 	);

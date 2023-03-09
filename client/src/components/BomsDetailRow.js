@@ -47,6 +47,7 @@ const BomsDetailRow = ({
 		});
 		updateDeletedItem(bom);
 	};
+
 	if (bom.item_qty === null) return null;
 	return (
 		<tr>

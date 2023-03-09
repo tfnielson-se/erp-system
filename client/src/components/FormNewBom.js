@@ -33,6 +33,7 @@ const FormNewBom = () => {
 			}
 		});
 	};
+
   if(formErrors) return <h1>{formErrors}</h1>
 	return (
 		<tr className="bg-gray-800">
@@ -59,7 +60,7 @@ const FormNewBom = () => {
 					onClick={handleNewBom}
 					className="inline-flex items-center px-3 py-1 mx-1 rounded-md gap-x-2 text-gray-300 bg-emerald-100/60 dark:bg-green-800 text-sm font-normal capitalize"
 				>
-					Submit
+					Create New BOM
 				</button>
 			</td>
 		</tr>

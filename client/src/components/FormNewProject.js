@@ -1,56 +1,65 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const FormNewProject = () => { 
-  const initialValue = {
+const FormNewProject = () => {
+  const initialValues = {
 		name: "",
 		description: "",
-		project_id: "",
+		is_active: true,
+    budget: "",
 	};
 
-  const [formData, setFormData] = useState("")
+  const [formData, setFormData] = useState(initialValues)
+  const {name, description, is_active, budget} = formData
+  const [errors, setErrors] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log(formData);
+		fetch("/projects", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(formData),
+		}).then((res) => {
+			if (res.ok) {
+				res.json().then((newUser) => {
+					console.log(newUser);
+          setFormData(initialValues);
+          setErrors("")
+          navigate('/projects')
+				});
+			} else {res.json().then((errorMsg) =>
+        setErrors((errorMsg.errors)))
+    }
+  });
+  };
+
+  const renderErrors = errors ?  <h1 className="mt-2 text-red-500">{errors}: All fields Requiered, Budget must be higher than $0</h1> : null
 
   return (
 <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
 			<h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">
-				New User Account
+				New Project Form
 			</h2>
 
-			<form onSubmit={" "}>
+			<form onSubmit={handleSubmit}>
 				<div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 					<div>
 						<label
 							className="text-gray-700 dark:text-gray-200"
 						>
-							Title
+							Project Name
 						</label>
 						<input
-							id="title"
+							id="name"
 							type="text"
 							className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-							value={" "}
-							onChange={(e) => {
-								setFormData({
-									...title,
-									title: e.target.value,
-								});
-							}}
-						/>
-					</div>
-					<div>
-						<label
-							className="text-gray-700 dark:text-gray-200"
-						>
-							First Name
-						</label>
-						<input
-							id="first-name"
-							type="text"
-							className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-							value={first_name}
+							value={name}
 							onChange={(e) => {
 								setFormData({
 									...formData,
-									first_name: e.target.value,
+									name: e.target.value,
 								});
 							}}
 						/>
@@ -58,19 +67,18 @@ const FormNewProject = () => {
 					<div>
 						<label
 							className="text-gray-700 dark:text-gray-200"
-							for="username"
 						>
-							Last Name
+							Description
 						</label>
 						<input
-							id="last-name"
+							id="desc"
 							type="text"
 							className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-							value={last_name}
+							value={description}
 							onChange={(e) => {
 								setFormData({
 									...formData,
-									last_name: e.target.value,
+									description: e.target.value,
 								});
 							}}
 						/>
@@ -79,82 +87,49 @@ const FormNewProject = () => {
 						<label
 							className="text-gray-700 dark:text-gray-200"
 						>
-							Email
+							Status
+						</label>
+						<select
+							id="status"
+							type="text"
+							className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+							value={is_active}
+							onChange={(e) => {
+								setFormData({
+									...formData,
+									is_active: true,
+								});
+							}}
+						>
+              <option value={true}> Active </option>
+            </select>
+					</div>
+					<div>
+						<label
+							className="text-gray-700 dark:text-gray-200"
+						>
+							Budget
 						</label>
 						<input
 							id="email"
 							type="text"
 							className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-							value={email}
+							value={budget}
 							onChange={(e) => {
 								setFormData({
 									...formData,
-									email: e.target.value,
+									budget: e.target.value,
 								});
 							}}
 						/>
 					</div>
-					<div>
-						<label
-							className="text-gray-700 dark:text-gray-200"
-						>
-							Password
-						</label>
-						<input
-							id="password"
-							type="password"
-							className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-							value={password}
-							onChange={(e) => {
-								setFormData({
-									...formData,
-									password: e.target.value,
-								});
-							}}
-						/>
-					</div>
-
-					<div>
-						<label
-							className="text-gray-700 dark:text-gray-200"
-						>
-							Password Confirmation
-						</label>
-						<input
-							id="passwordConfirmation"
-							type="password"
-							className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-							value={passwordConfirmation}
-							onChange={(e) => {
-								setFormData({
-									...formData,
-									passwordConfirmation: e.target.value,
-								});
-							}}
-						/>
-					</div>
-				</div>
-				<div className="flex justify-end py-3">
-					<span className="text-gray-700 dark:text-gray-200 px-3">
-						<label>Admin: </label>
-						<input
-							type="checkbox"
-							name="is_admin"
-							value={is_admin}
-							onChange={() => {
-								setFormData({
-									...formData,
-									is_admin: !is_admin,
-								});
-							}}
-						/>
-					</span>
 				</div>
 				<div className="flex justify-end mt-6">
 					<button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
 						Submit
 					</button>
 				</div>
+        {renderErrors}
 			</form>
 		</section>
   )
