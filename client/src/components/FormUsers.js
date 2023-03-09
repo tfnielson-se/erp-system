@@ -56,7 +56,6 @@ const FormUsers = ({ onAddNewUser }) => {
 					<div>
 						<label
 							className="text-gray-700 dark:text-gray-200"
-							for="title"
 						>
 							Title
 						</label>
@@ -76,7 +75,6 @@ const FormUsers = ({ onAddNewUser }) => {
 					<div>
 						<label
 							className="text-gray-700 dark:text-gray-200"
-							for="username"
 						>
 							First Name
 						</label>
@@ -116,7 +114,6 @@ const FormUsers = ({ onAddNewUser }) => {
 					<div>
 						<label
 							className="text-gray-700 dark:text-gray-200"
-							for="email"
 						>
 							Email
 						</label>
@@ -136,7 +133,6 @@ const FormUsers = ({ onAddNewUser }) => {
 					<div>
 						<label
 							className="text-gray-700 dark:text-gray-200"
-							for="password"
 						>
 							Password
 						</label>
@@ -157,7 +153,6 @@ const FormUsers = ({ onAddNewUser }) => {
 					<div>
 						<label
 							className="text-gray-700 dark:text-gray-200"
-							for="passwordConfirmation"
 						>
 							Password Confirmation
 						</label>

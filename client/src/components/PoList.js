@@ -5,9 +5,9 @@ const PoList = () => {
   const [pos, setPos] = useState([])
 
   useEffect(() => {
-    fetch('/Pos')
+    fetch('/pos')
     .then(res => res.json())
-    .then(poData => setPos)
+    .then(poData => setPos(poData))
   },[])
 
   const renderPos = pos.map((po) => (

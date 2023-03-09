@@ -4,7 +4,6 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     @projects = Project.all
-
     render json: @projects
   end
 
@@ -15,22 +14,14 @@ class ProjectsController < ApplicationController
 
   # POST /projects
   def create
-    @project = Project.new(project_params)
-
-    if @project.save
-      render json: @project, status: :created, location: @project
-    else
-      render json: @project.errors, status: :unprocessable_entity
-    end
+    @project = Project.create!(project_params)
+    render json: @project, status: :created
   end
 
   # PATCH/PUT /projects/1
   def update
-    if @project.update(project_params)
-      render json: @project
-    else
-      render json: @project.errors, status: :unprocessable_entity
-    end
+    @project.update!(project_params)
+    render json: @project, status: :accepted
   end
 
   # DELETE /projects/1

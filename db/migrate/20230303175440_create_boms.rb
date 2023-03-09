@@ -4,8 +4,8 @@ class CreateBoms < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :description
       t.integer :item_qty
-      t.belongs_to :project, null: false, foreign_key: true
-      t.belongs_to :item, null: false, foreign_key: true
+      t.belongs_to :project, null: true, foreign_key: true
+      t.belongs_to :item, null: true, foreign_key: true
 
       t.timestamps
     end

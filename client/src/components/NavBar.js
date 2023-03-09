@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import AdminMenu from "./AdminMenu";
 import Menu from "./Menu";
-// import Login from "./Login";
+import Login from "./Login";
 
 const NavBar = ({ updateCurrentUser, currentUser }) => {
 	const navigate = useNavigate();

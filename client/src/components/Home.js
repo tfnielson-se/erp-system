@@ -2,7 +2,7 @@ import Login from "./Login";
 import { useNavigate } from "react-router-dom";
 
 const Home = ({ currentUser, updateCurrentUser }) => {
-  console.log("from home", currentUser)
+  // console.log("from home", currentUser)
   // const navigate = useNavigate()
 
 

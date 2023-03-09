@@ -2,20 +2,20 @@
 ////////////////////////////////////////////////////////////////
 //  TODO
 // 1. Projects CRUD
-// // Create
+// // Create -
 // // Read - ✅
-// // Update - mark as completed / inactiv
+// // Update -
 // // Delete - ✅
 // 2. User CRUD
-// // Create - needs validation & errors ✅
-// // Read - me?
-// // Update - update my profile
-// // Delete - delete my project?
-// 3. BOMs page -- revise
-// // Create
-// // Read - list of all
-// // Update
-// // Delete
+// // Create - ✅ needs render errors
+// // Read - me? ✅
+// // Update -
+// // Delete -
+// 3. BOMs page
+// // Create - ✅ needs render errors
+// // Read - ✅
+// // Update - ✅ - needs more work after create
+// // Delete - ✅
 // 4. POs page -- revise
 // // Create
 // // Read
@@ -23,9 +23,9 @@
 // // Delete
 // 5. Items page -- revise
 // // Create
-// // Read
+// // Read - ✅
 // // Update
-// // Delete
+// // Delete - ✅
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
@@ -34,10 +34,17 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import Login from "./components/Login";
+
 import UserProfile from "./components/UserProfile";
 import FormUsers from "./components/FormUsers";
+
 import ProjectList from "./components/ProjectsList";
+import ProjectDetails from "./components/ProjectDetails";
+import FormNewProject from "./components/FormNewProject";
+
 import BomsList from "./components/BomsList";
+import BomsDetails from "./components/BomsDetail";
+
 import ItemsList from "./components/ItemsList";
 import PoList from "./components/PoList";
 // import _ from "lodash";
@@ -48,9 +55,8 @@ function App() {
 	const [currentUser, setCurrentUser] = useState(false);
   const [errors, setErrors] = useState(false);
 
-	console.log("current", currentUser);
-	console.log("users", users)
-
+	// console.log("current", currentUser);
+	// console.log("users", users)
 	useEffect(() => {
 		fetch("/authorized").then((res) => {
 			if (res.ok) {
@@ -100,10 +106,13 @@ function App() {
 					element={<UserProfile currentUser={currentUser} />}
 				/>
         <Route path='/users/:id/projects' element={<ProjectList currentUser={currentUser} />} />
-        <Route path='/login' element={<Login updateCurrentUser={updateCurrentUser}/>} />
-        <Route path='/Boms' element={<BomsList />} />
-        <Route path='/Pos' element={<PoList />} />
+        <Route path='/projects/:id' element={<ProjectDetails />} />
+        <Route path='/projects/new' element={<FormNewProject />} />
+        <Route path='/boms' element={<BomsList />} />
+        <Route path='/boms/:name' element={<BomsDetails /> } />
+        <Route path='/pos' element={<PoList />} />
         <Route path='/Items' element={<ItemsList />} />
+        <Route path='/login' element={<Login updateCurrentUser={updateCurrentUser}/>} />
 			</Routes>
 		</div>
 	);

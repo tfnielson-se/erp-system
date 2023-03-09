@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import ProjectCard from "./ProjectCard"
+import ProjectRow from "./ProjectRow"
 
 const ProjectList = ({ currentUser }) => {
   const {projects} = currentUser
@@ -15,7 +15,7 @@ const ProjectList = ({ currentUser }) => {
   }
 
   const renderProjects = myProjects.map((project) => (
-    <ProjectCard key={project.id} project={project} onDeleteProject={deleteProject}/>
+    <ProjectRow key={project.id} project={project} onDeleteProject={deleteProject}/>
   ))
 
 

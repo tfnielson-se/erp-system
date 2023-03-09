@@ -1,42 +1,45 @@
 class BomsController < ApplicationController
-  before_action :set_bom, only: %i[ show update destroy ]
+  before_action :set_bom, only: %i[ show ]
+  wrap_parameters format: []
 
   # GET /boms
   def index
     @boms = Bom.all.order(:name)
-
     render json: @boms
   end
 
   # GET /boms/bom1
   def show
-    render json: @bom
+    render json: @bom, status: :ok
   end
 
   # POST /boms
   def create
-    @bom = Bom.create!(bom_params)
-    render json: @bom, status: :created, location: @bom
+    bom = Bom.create!(bom_params)
+    # byebug
+    render json: bom, status: :created
   end
 
   # PATCH/PUT /boms/1
   def update
-    if @bom.update!(bom_params)
-      render json: @bom
-    else
-      render json: @bom.errors, status: :unprocessable_entity
-    end
+    bom = Bom.find_by(id: params[:id])
+    # byebug
+    bom.update!(bom_params)
+    render json: bom, status: :accepted
   end
 
   # DELETE /boms/1
   def destroy
-    @bom.destroy
+    bom = Bom.where(name: params[:id])
+    # byebug
+    bom.destroy_all
+    head :no_content
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bom
-      @bom = Bom.all.select{|bom| bom.name === params[:id]}
+      @bom = Bom.all.select{|bom| bom.name === params[:id].upcase}
       # byebug
     end
 

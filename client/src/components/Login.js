@@ -25,14 +25,14 @@ function Login({ updateCurrentUser }) {
           updateCurrentUser(user)
 					navigate("/");
 				});
-				// debugger
 			} else {
-				res.json().then((json) =>
-					setErrors((json.errors))
+				res.json().then((errorMsg) =>
+					setErrors((errorMsg.error))
 				);
 			}
 		});
 	}
+  const renderErrors = errors ?  <h1 className="mt-2 text-red-500">{errors}</h1> : null
 
 	return (
 		<div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">
@@ -103,6 +103,7 @@ function Login({ updateCurrentUser }) {
 							Sign In
 						</button>
 					</div>
+          {renderErrors}
 				</form>
 			</div>
 		</div>
