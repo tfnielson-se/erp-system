@@ -39,7 +39,7 @@ class BomsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bom
-      @bom = Bom.all.select{|bom| bom.name === params[:id].upcase}
+      @bom = Bom.where(name: params[:id])
       # byebug
     end
 

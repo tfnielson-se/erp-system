@@ -4,7 +4,7 @@ import FormNewItem from "./FormNewItem"
 
 const ItemsList = () => {
   const [items, setItems] = useState(null)
-  console.log(items)
+  // console.log(items)
 
   useEffect(() => {
     fetch('/items')

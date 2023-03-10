@@ -49,7 +49,7 @@ const FormUsers = ({ onAddNewUser }) => {
     }
   });
   };
-  
+
   const renderErrors = errors ?  <h1 className="mt-2 text-red-500">{errors}, All Fields Requiered</h1> : null
   const renderSuccess = createdMsg ?  <h1 className="mt-2 text-green-500">{createdMsg}</h1> : null
 
@@ -102,7 +102,6 @@ const FormUsers = ({ onAddNewUser }) => {
 					<div>
 						<label
 							className="text-gray-700 dark:text-gray-200"
-							for="username"
 						>
 							Last Name
 						</label>

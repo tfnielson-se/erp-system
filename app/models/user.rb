@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :pos
+  has_many :pos, dependent: :destroy
   has_many :items, through: :pos
 
   has_many :users_projects

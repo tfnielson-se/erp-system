@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  include ActionView::Helpers::NumberHelper
+  # include ActionView::Helpers::NumberHelper
   before_action :set_project, only: %i[ show update destroy ]
 
   # GET /projects
@@ -38,6 +38,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.permit(:name, :description, :is_active)
+      params.permit(:name, :description, :is_active, :budget)
     end
 end

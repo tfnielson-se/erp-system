@@ -5,6 +5,7 @@ import FormNewBom from "./FormNewBom"
 
 const Bomslist = () => {
   const [boms, setBoms] = useState([])
+// console.log(boms)
 
   useEffect(() => {
     fetch('/boms')

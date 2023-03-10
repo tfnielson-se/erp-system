@@ -24,7 +24,7 @@ const MyProjectsList = ({ currentUser }) => {
   return (
     <>
     <Link to='/projects' className="inline-flex items-center px-3 py-1 mx-1 rounded-md gap-x-2 text-gray-300 bg-emerald-100/60 dark:bg-gray-800 text-sm font-normal capitalize">
-      <button className="inline-flex items-center px-3 py-1 mx-1 rounded-md gap-x-2 text-gray-300 bg-emerald-100/60 dark:bg-gray-800 text-sm font-normal capitalize">View All Projects</button>
+      View All Projects
     </Link>
 <section className="container px-4 mx-auto mt-5">
 			<div className="flex flex-col">

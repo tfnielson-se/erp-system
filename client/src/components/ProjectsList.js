@@ -1,35 +1,37 @@
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import ProjectRow from "./ProjectRow"
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import ProjectRow from "./ProjectRow";
 
-const ProjectsList = ({  }) => {
-  const[allProjects, setAllProjects] = useState([])
+const ProjectsList = ({}) => {
+	const [allProjects, setAllProjects] = useState([]);
 
-  useEffect(() => {
-    fetch('/projects')
-    .then(res => res.json())
-    .then(projectsData => setAllProjects(projectsData))
-  },[])
+	useEffect(() => {
+		fetch("/projects")
+			.then((res) => res.json())
+			.then((projectsData) => setAllProjects(projectsData));
+	}, []);
 
-  if(!allProjects) return <h1>Loading...</h1>;
+	if (!allProjects) return <h1>Loading...</h1>;
 
-  const deleteProject = (projectId) => {
-    const projectsAfterDelete = allProjects.filter(project => {
-      if (project.id !== projectId) {
-        return project
-    }})
-    setAllProjects(projectsAfterDelete)
-  }
+	const deleteProject = (projectId) => {
+		const projectsAfterDelete = allProjects.filter((project) => {
+			if (project.id !== projectId) {
+				return project;
+			}
+		});
+		setAllProjects(projectsAfterDelete);
+	};
 
-  const renderProjects = allProjects.map((project) => (
-    <ProjectRow key={project.id} project={project} onDeleteProject={deleteProject}/>
-  ))
+	const renderProjects = allProjects.map((project) => (
+		<ProjectRow
+			key={project.id}
+			project={project}
+			onDeleteProject={deleteProject}
+		/>
+	));
 
-
-  return (
-    <>
-
-<section className="container px-4 mx-auto mt-5">
+	return (
+		<section className="container px-4 mx-auto mt-5">
 			<div className="flex flex-col">
 				<div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 					<div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -41,9 +43,7 @@ const ProjectsList = ({  }) => {
 											scope="col"
 											className="py-3.5 px-4 text-sm font-normal rtl:text-right text-gray-500 dark:text-gray-400"
 										>
-
-													<span>ID #</span>
-
+											<span>ID #</span>
 										</th>
 
 										<th
@@ -78,7 +78,7 @@ const ProjectsList = ({  }) => {
 											scope="col"
 											className="px-4 py-3.5 text-sm font-normal rtl:text-right text-gray-500 dark:text-gray-400"
 										>
-										Actions
+											Actions
 										</th>
 									</tr>
 								</thead>
@@ -91,8 +91,7 @@ const ProjectsList = ({  }) => {
 				</div>
 			</div>
 		</section>
-    </>
-  )
-}
+	);
+};
 
-export default ProjectsList
+export default ProjectsList;

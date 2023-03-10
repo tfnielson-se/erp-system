@@ -8,7 +8,7 @@ const ItemsRow = ({item, onDeleteItem}) => {
     fetch(`/items/${id}`, {
     method: 'DELETE',
     })
-        onDeleteItem(item.id)
+      onDeleteItem(item.id)
 
       }
 

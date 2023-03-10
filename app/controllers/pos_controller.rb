@@ -1,5 +1,6 @@
 class PosController < ApplicationController
-  before_action :set_po, only: %i[ show update destroy ]
+  before_action :set_po, only: %i[ show ]
+  wrap_parameters format: []
 
   # GET /pos
   def index
@@ -9,38 +10,34 @@ class PosController < ApplicationController
 
   # GET /pos/1
   def show
-    render json: @po
+    render json: @po, status: :ok
   end
 
   # POST /pos
   def create
-    @po = Po.new(po_params)
-
-    if @po.save
-      render json: @po, status: :created, location: @po
-    else
-      render json: @po.errors, status: :unprocessable_entity
-    end
+    po = Po.create!(po_params)
+    render json: po, status: :created
   end
 
   # PATCH/PUT /pos/1
   def update
-    if @po.update(po_params)
-      render json: @po
-    else
-      render json: @po.errors, status: :unprocessable_entity
-    end
+    po = Po.find_by(id: params[:id])
+    po.update!(po_params)
+    render json: po, status: :accepted
   end
 
   # DELETE /pos/1
   def destroy
-    @po.destroy
+    po = Po.where(po_number: params[:id])
+    # byebug
+    po.destroy_all
+    head :no_content
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_po
-      @po = Po.all.where(po_number: params[:id])
+      @po = Po.where(po_number: params[:id])
       # byebug
     end
 

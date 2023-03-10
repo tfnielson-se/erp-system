@@ -35,6 +35,7 @@ const NavBar = ({ updateCurrentUser, currentUser }) => {
 						<h2 className="border-b-2 border-transparent transition-colors duration-300 transform text-gray-200 hover:border-green-300 mx-1.5 sm:mx-6 text-2xl">
 							ERP System
 						</h2>
+            <p> project management interface</p>
 					</Link>
 				</div>
 				<div>{displayAdminMenu}</div>

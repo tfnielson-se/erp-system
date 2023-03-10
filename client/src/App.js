@@ -6,25 +6,29 @@
 // // Read - ✅
 // // Update -
 // // Delete - ✅
+
 // 2. User CRUD
 // // Create - ✅
 // // Read - ✅
-// // Update -
-// // Delete -
+// // Update - Need DEV
+// // Delete -Need DEV
+
 // 3. BOMs page
 // // Create - ✅
 // // Read - ✅
 // // Update - ✅ - needs more work after create
 // // Delete - ✅
+
 // 4. POs page -- revise
-// // Create
-// // Read
-// // Update
-// // Delete
+// // Create - IP
+// // Read - ✅
+// // Update - ✅
+// // Delete - ✅
+
 // 5. Items page
 // // Create - ✅
 // // Read - ✅
-// // Update
+// // Update - IP
 // // Delete - ✅
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
@@ -47,7 +51,10 @@ import BomsList from "./components/BomsList";
 import BomsDetails from "./components/BomsDetail";
 
 import ItemsList from "./components/ItemsList";
+
 import PoList from "./components/PoList";
+import PoDetails from "./components/PoDetail";
+import FomrNewPo from "./components/FormNewPo";
 // import _ from "lodash";
 import "./App.css";
 
@@ -103,6 +110,7 @@ function App() {
 						/>
 					}
 				/>
+				{/* User Routes */}
 				<Route
 					path="/users/new"
 					element={<FormUsers onAddNewUser={onAddNewUser} />}
@@ -111,6 +119,7 @@ function App() {
 					path="/users/:id"
 					element={<UserProfile currentUser={currentUser} />}
 				/>
+				{/* Project Routes */}
 				<Route
 					path="/users/:id/projects"
 					element={<MyProjectsList currentUser={currentUser} />}
@@ -118,10 +127,14 @@ function App() {
 				<Route path="/projects" element={<ProjectsList />} />
 				<Route path="/projects/:id" element={<ProjectDetails />} />
 				<Route path="/projects/new" element={<FormNewProject />} />
+				{/* BOMs Routes */}
 				<Route path="/boms" element={<BomsList />} />
 				<Route path="/boms/:name" element={<BomsDetails />} />
+				{/* PO Routes */}
 				<Route path="/pos" element={<PoList />} />
-				<Route path="/Items" element={<ItemsList />} />
+				<Route path="/pos/:po_number" element={<PoDetails />} />
+        <Route path="/pos/new" element={<FomrNewPo />} />
+				<Route path="/items" element={<ItemsList />} />
 				<Route
 					path="/login"
 					element={<Login updateCurrentUser={updateCurrentUser} />}
