@@ -18,8 +18,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_03_205756) do
     t.string "name"
     t.string "description"
     t.integer "item_qty"
-    t.bigint "project_id", null: false
-    t.bigint "item_id", null: false
+    t.bigint "project_id"
+    t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_boms_on_item_id"

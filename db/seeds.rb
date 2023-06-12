@@ -76,14 +76,14 @@ end
 puts "🗒️ projects seeded"
 
 puts "seeding users... 👤"
-u1 = User.create(first_name: "Galen", last_name: "Gastby", email: "galen@erpsystem.com", password_digest: "Galen123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
-u2 = User.create(first_name: "Tom", last_name: "Angotee", email: "tom@erpsystem.com", password_digest: "Tom123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
-u3 = User.create(first_name: "Sam", last_name: "Aguas", email: "sam@erpsystem.com", password_digest: "Sam123!?", title: "Master Wizard of Wizardry", is_active: true, is_admin: true)
-u4 = User.create(first_name: "Thomas", last_name: "O'Nielson", email: "thomas@erpsystem.com", password_digest: "Thomas123!?", title: Faker::Construction.role, is_active: true, is_admin: true)
-u5 = User.create(first_name: "Nick", last_name: "Stokefield", email: "nick@erpsystem.com", password_digest: "Nick123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
-u6 = User.create(first_name: "Owen", last_name: "Wheelson", email: "owen@erpsystem.com", password_digest: "Owen123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
-u7 = User.create(first_name: "Stephen B", last_name: "Smith", email: "stephen@erpsystem.com", password_digest: "Stephen123!?", title: "Master Wizard of Wizardry", is_active: true, is_admin: true)
-u8 = User.create(first_name: "Josias", last_name: "Youngfellow", email: "josias@erpsystem.com", password_digest: "Josias123!?", title: Faker::Construction.role, is_active: true, is_admin: true)
+u1 = User.create(first_name: "Galen", last_name: "Gastby", email: "galen@erpsystem.com", password: "Galen123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
+u2 = User.create(first_name: "Tom", last_name: "Angotee", email: "tom@erpsystem.com", password: "Tom123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
+u3 = User.create(first_name: "Sam", last_name: "Aguas", email: "sam@erpsystem.com", password: "Sam123!?", title: "Master Wizard of Wizardry", is_active: true, is_admin: true)
+u4 = User.create(first_name: "Thomas", last_name: "O'Nielson", email: "thomas@erpsystem.com", password: "Thomas123!?", title: Faker::Construction.role, is_active: true, is_admin: true)
+u5 = User.create(first_name: "Nick", last_name: "Stokefield", email: "nick@erpsystem.com", password: "Nick123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
+u6 = User.create(first_name: "Owen", last_name: "Wheelson", email: "owen@erpsystem.com", password: "Owen123!?", title: Faker::Construction.role, is_active: true, is_admin: false)
+u7 = User.create(first_name: "Stephen B", last_name: "Smith", email: "stephen@erpsystem.com", password: "Stephen123!?", title: "Master Wizard of Wizardry", is_active: true, is_admin: true)
+u8 = User.create(first_name: "Josias", last_name: "Youngfellow", email: "josias@erpsystem.com", password: "Josias123!?", title: Faker::Construction.role, is_active: true, is_admin: true)
 
 
 
@@ -102,9 +102,55 @@ puts "seeding BOMs... 🛠️"
 
 name = ["BOM1","BOM2", "BOM3", "BOM4", "BOM5", "BOM6","BOM7", "BOM8", "BOM9", "BOM10"]
 
+desc1 = "Scaffolding"
+desc2 = "Plumbing"
+desc3 = "Tile & Stone"
+desc4 = "Electric"
+desc5 = "Concrete"
+desc6 = "Framing"
+desc7 = "Exterior"
+desc8 = "Interior"
+desc9 = "Network"
+desc10 = "Maintenace"
 
-50.times do
-  Bom.create(name: name.sample, description: Faker::Construction.subcontract_category, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+10.times do
+  Bom.create(name: name[1], description: desc1, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name[2], description: desc2, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name[3], description: desc10, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name[4], description: desc3, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name[5], description: desc4, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name[6], description: desc5, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name[7], description: desc6, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name[8], description: desc7, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name[9], description: desc8, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
+end
+
+10.times do
+  Bom.create(name: name[0], description: desc9, item_qty: rand(1..20), item_id: Item.ids.sample, project_id: Project.ids.sample)
 end
 
 puts "🛠️ BOMs seeded"
